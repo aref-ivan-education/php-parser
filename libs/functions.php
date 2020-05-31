@@ -41,17 +41,17 @@ function searchLink($target){
 function searchClass($str,$className,$endHook=""){
     $regClass = '#<\s*?([a-z]{1,})\s+?[^>]*?class\s*?=\s*([^\s]{1,2})\s*?'.$className.'\s*?\2[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
     preg_match_all($regClass,$str,$arr);
-    return $arr;
+    return implode($arr[0]);
 }
 function searchId($str,$idName,$endHook=""){
     $regID='#<\s*?([a-z]{3,})\s+?[^>]*?id\s*?=\s*?\"\s*?'.$idName.'\s*?\"[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
     preg_match_all($regID,$str,$arr);
-    return $arr;
+    return implode($arr[0]);
 }
 function searchTag($str,$tag,$endHook=""){
     $regTag="#<".$tag."[^>]*>(.*?)</".$tag.">\s*?".$endHook."#su";
     preg_match_all($regTag,$str,$arr);
-    return $arr;
+    return implode($arr[0]);
 
 }
 ?>
