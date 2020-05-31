@@ -38,20 +38,38 @@ function searchLink($target){
     return $arr;
 }
 
-function searchClass($str,$className,$endHook=""){
+function searchImg($target){
+    $regTag="#<".$tag."[^>]*>(.*?)</".$tag.">\s*?".$endHook."#su";
+
+}
+
+function searchClass($str,$className,$type="str",$endHook=""){
     $regClass = '#<\s*?([a-z]{1,})\s+?[^>]*?class\s*?=\s*([^\s]{1,2})\s*?'.$className.'\s*?\2[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
     preg_match_all($regClass,$str,$arr);
-    return implode($arr[0]);
+    if(!$type=="str"){
+        return $arr;
+    }else{
+        return implode($arr[0]);
+    }
+    
 }
-function searchId($str,$idName,$endHook=""){
+function searchId($str,$idName,$type="str",$endHook=""){
     $regID='#<\s*?([a-z]{3,})\s+?[^>]*?id\s*?=\s*?\"\s*?'.$idName.'\s*?\"[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
     preg_match_all($regID,$str,$arr);
-    return implode($arr[0]);
+    if(!$type=="str"){
+        return $arr;
+    }else{
+        return implode($arr[0]);
+    }
 }
-function searchTag($str,$tag,$endHook=""){
+function searchTag($str,$tag,$type="str",$endHook=""){
     $regTag="#<".$tag."[^>]*>(.*?)</".$tag.">\s*?".$endHook."#su";
     preg_match_all($regTag,$str,$arr);
-    return implode($arr[0]);
+    if(!$type=="str"){
+        return $arr;
+    }else{
+        return implode($arr[0]);
+    }
 
 }
 ?>
