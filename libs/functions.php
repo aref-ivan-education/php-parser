@@ -1,50 +1,47 @@
 <?php
 
-function searchLink($target){
+function searchLink($target,$type="arr"){
     $regLink='#<\s*?a\s+?[^>]*?>(.+?)</a>#su';
-    $regHref='#href\s*?=(.)(.+?)\1#';
-    $regClassLink='#class\s*?=\s*?"(.+?)"\s*?#';
+    $regHref='#href\s*?=\s*?([^\s]{1,2})\s*?(.+?)\1#';
+    // $regClassLink='#class\s*?=\s*?"(.+?)"\s*?#';
     $arr=[];
     $link="";
-    $name="";
-
-    
-    preg_match_all($regLink,$target,$linkArr);
-    
+    $name="";   
+    preg_match_all($regLink,$target,$linkArr);  
     foreach ($linkArr[0] as $key => $value){
         $name=$linkArr[1][$key];
         preg_match($regHref,$value,$href);        
         $href[2]=preg_replace('#[\'"\s]#',"",$href[2]);
-        preg_match($regClassLink,$value,$classLink);
-
-        if($classLink){
-            $class=$classLink[1];
-        }
-        else{
-            $class="";
-        }
         ;
-
-        $arr[$key]=[$value,$href[2],$name,$class];
+        $arr[$key]=[$value,$href[2],$name];
         
-
-        // echo "href: " . $href[2] . "<br>";
-        // if($classLink)
-        //     {echo "class: " . $classLink[1] . "<br>";}
-        // else{echo "class: " . "отсутствует" . "<br>";};
-        // echo "Название: " . $linkArr[1][$key] . "<br>";
     }
-    
-    return $arr;
+    switch($type){
+        case "arr":
+            return $arr;
+            break;
+        case "str": 
+            return implode($linkArr[0]);
+            break;
+        case "marr": 
+            return $linkArr;
+            break;
+        default:
+            return $arr;
+            break;
+
+    }
+   
 }
 
 function searchImg($target){
-    $regTag="#<".$tag."[^>]*>(.*?)</".$tag.">\s*?".$endHook."#su";
+    $regImg="#<\s*?img\s+?[^>]*?>#su";
+    $regSrc = '#src\s*?=\s*?([^\s]{1,2})\s*?(.+?)\1#';
 
 }
 
 function searchClass($str,$className,$type="str",$endHook=""){
-    $regClass = '#<\s*?([a-z]{1,})\s+?[^>]*?class\s*?=\s*([^\s]{1,2})\s*?'.$className.'\s*?\2[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
+    $regClass = '#<\s*?([a-z]{1,})\s+?[^>]*?class\s*?=\s*([^\s]{1,2})[\sa-z0-9\-_]*?'.$className.'[\sa-z0-9\-_]*?\2[^>]*?>(.+?)<\s*?/\1\s*?>\s*?'.$endHook.'#su';
     preg_match_all($regClass,$str,$arr);
     if(!$type=="str"){
         return $arr;
