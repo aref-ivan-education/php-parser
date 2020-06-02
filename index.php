@@ -1,5 +1,7 @@
 <?php
 include_once("libs/functions.php");
+include_once('libs/curl.php');
+include_once("libs/mysqli.php");
 	// //Устанавливаем доступы к базе данных:
 	// 	$host = 'localhost'; //имя хоста, на локальном компьютере это localhost
 	// 	$user = 'root'; //имя пользователя, по умолчанию это root
@@ -15,8 +17,8 @@ include_once("libs/functions.php");
 	// 	Соединение записывается в переменную $link,
 	// 	которая используется дальше для работы mysqi_query.
     // */
-    // $table='1_task_sites';
-	// $result = mysqli_query($link, "SELECT ref FROM ".$table." WHERE id>0");
+    $table='1_task_sites';
+	$result = db_query("SELECT ref FROM ".$table." WHERE id>0");
 	
 
 	// for( $sites=[]; $row=mysqli_fetch_assoc($result); $sites[]=$row["ref"]);
