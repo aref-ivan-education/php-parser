@@ -17,7 +17,8 @@
         $result = curl_exec($curl);
 
 		//Отлавливаем ошибки подключения
-		if ($result === false) {			echo "Ошибка CURL: " . curl_error($curl);
+		if ($result === false) {
+			echo "Ошибка CURL: " . curl_error($curl);
 			return false;
 		} else {
 			return $result;

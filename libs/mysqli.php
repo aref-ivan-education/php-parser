@@ -13,12 +13,15 @@
         $link = mysqli_connect($host, $user, $password, $db_name);
 
         mysqli_query($link, "SET NAMES 'utf8'") or die ( mysqli_error($link) );
-        
-        $result = mysqli_query($link, $query);
+        // if(is_object(mysqli_query($link, $query))){
+        //     $result = mysqli_query($link, $query);
 
-        for( $data=[]; $row=mysqli_fetch_assoc($result); $data[]=$row["ref"]);
+        //     for( $data=[]; $row=mysqli_fetch_assoc($result); $data[]=$row["ref"]);
 
-        return $data;
+        //     return $data;
+        // }else{
+            mysqli_query($link, $query);
+        // }
     };
 		
 
