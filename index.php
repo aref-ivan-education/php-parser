@@ -11,9 +11,12 @@ include_once("libs/mysqli.php");
 		$html="";
 		$html=getPageByUrl($url);
 		$title=implode(searchTag($html,"title","marr")[1]);
-		var_dump($title);
-		var_dump($key);
-		// db_query("INSERT INTO 1_task SET id=".$key."  title='".$title."'");
+		$header=implode(searchTag($html,"h1","marr")[1]);
+		$
+		
+		db_query("INSERT INTO parsesite SET title='".$title."'",["db_name"=>'1_task']);
+
+		
 	}
 
 	
