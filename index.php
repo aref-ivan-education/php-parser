@@ -6,20 +6,16 @@ require_once "libs/phpQuery.php";
 
 // $str=file_get_contents("rostov-cakes.html");
 
-$site=getPageByUrl("http://old.code.mu/exercises/advanced/php/parsing/rabota-s-bibliotekoj-phpquery-v-php/1/1.php");
+$site=getPageByUrl("http://old.code.mu/exercises/advanced/php/parsing/rabota-s-bibliotekoj-phpquery-v-php/2/1.php");
 
 
 $pq=phpQuery::newDocument($site);
 
-$content= $pq->find("#content");
-$footer=$pq->find("#footer");
-$sidebars=$pq->find(".sidebar");
-$paragrafs=$pq->find("p");
-$links=$pq->find('a[href]');
-$prgfWww=$pq->find("p.www");
-$linkWwwContent = pq($content)->find('a[href].www');
-$linksPag=$pq->find(".pag .active a");
-$prgfEeeFooter=pq($footer)->find('p.eee');
+$pq->find('img')->remove();
+$pq->find('p.more')->remove();
+$pq->find('p')->wrap('<div>');
+$pq->find('p')->wrapInner('<b>');
+echo $pq->html();
 
 // echo pq($footer)->html();
 
@@ -27,11 +23,11 @@ $prgfEeeFooter=pq($footer)->find('p.eee');
 
 // $linksText= $links->html();
 
-foreach($prgfEeeFooter as $elem){
+// foreach($content as $elem){
 	
 
-	echo "<p>".pq($elem)->html()."</p>";
-}
+// 	echo "<p>".pq($elem)->attr('src')."</p>";
+// }
 // $linksHref=$links->attr("href");
 
 // var_dump($href);
