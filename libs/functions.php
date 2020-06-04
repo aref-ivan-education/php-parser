@@ -100,5 +100,21 @@ function searchTag($str,$tag,$type="str",$endHook=""){
     }
 
 }
+function clearContent($target){
+    $content=$target;
+   
+    $scriptSContent=searchTag($content,"script","arr");
+    $imgContent=searchImg($content,"marr");
+    $linkContent = searchTag($content,"a","arr");
+
+    $content=str_replace($scriptSContent[0]," ",$content);//удалили скрипты
+    $content=str_replace($imgContent[0],"",$content);//удалили картинки
+    $content=str_replace($linkContent[0],"",$content);//удалили ссылки
+
+    $content=strip_tags($content,'<p>');
+    return $content;
+
+
+}
 ?>
 
