@@ -12,26 +12,23 @@ $site=getPageByUrl("http://old.code.mu/exercises/advanced/php/parsing/rabota-s-b
 $pq=phpQuery::newDocument($site);
 
 $pq->find('img')->remove();
-$pq->find('p.more')->remove();
+$pq->find('.more')->remove();
+$pq->find("p[class=\'more\']")->remove();
 $pq->find('p')->wrap('<div>');
 $pq->find('p')->wrapInner('<b>');
+// $link=$pq->find('div.block a[href]');
+
+
+
+// foreach($link as $elem){
+    
+//     // pq($elem)->replaceWith(pq($elem)->html());
+//     echo pq($elem)->html()."<br>";
+
+// }
+
 echo $pq->html();
 
-// echo pq($footer)->html();
-
-
-
-// $linksText= $links->html();
-
-// foreach($content as $elem){
-	
-
-// 	echo "<p>".pq($elem)->attr('src')."</p>";
-// }
-// $linksHref=$links->attr("href");
-
-// var_dump($href);
-// var_dump($text);
 
 	
 

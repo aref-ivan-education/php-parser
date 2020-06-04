@@ -116,5 +116,16 @@ function clearContent($target){
 
 
 }
+function delTag($str,$tag){
+    $tags=explode(",",$tag);
+    $content=$str;
+
+    foreach($tags as $tag){
+        $content = preg_replace('#<\s*?'.$tag.'[^>]*?>|<\s*?/\s*?span[^>]*?>#su',"",$content);
+
+
+    }
+    return $content;    
+}
 ?>
 
